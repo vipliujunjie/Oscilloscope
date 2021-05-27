@@ -90,10 +90,17 @@ from lpc55 import CTimer
 import uarray
 
 # Configure a CTimer to have 500kHz wave
+<<<<<<< HEAD
 t4 = CTimer(4, 14)	   # Config CTimer4, Prescaler = 15. Get 10MHz
 t4_3 = t4.channel(3)    # Channel 3
 t4_3.action(CTimer.COUNTER_RESET | CTimer.MATCH_TOGGLE)   # On match to reset counter and toggle output
 t4_3.match(10)   			# 10MHz / 20 = 500,000Hz
+=======
+t4 = CTimer(4, 14)     # Config CTimer4, Prescaler = 15. Get 10MHz
+t4_3 = t4.channel(3)    # Channel 3
+t4_3.action(CTimer.COUNTER_RESET | CTimer.MATCH_TOGGLE)   # On match to reset counter and toggle output
+t4_3.match(10)              # 10MHz / 20 = 500,000Hz
+>>>>>>> 5923824... 初始化
 
 buffer = uarray.array('H', (0,)*NUM_SAMPLE)      # setup a 2K elements (unsigned short) array
 finish = False
@@ -103,18 +110,31 @@ def adc_callback(x):
     global finish
     finish = True
 
+<<<<<<< HEAD
 ADC_IN_CH1.callback(adc_callback)		# setup the callback funtion
+=======
+ADC_IN_CH1.callback(adc_callback)       # setup the callback funtion
+>>>>>>> 5923824... 初始化
 
 # Getting ADC data to buffer
 def grab_data():
     global finish
     finish = False
+<<<<<<< HEAD
     t4.enable()			# Start the CTimer4 running
     ADC_IN_CH1.read_timed(buffer, t4)
     print("buffer:"buffer)
     while not finish:		# Wait for end of conversion
         pass
     t4.enable(False)		# Stop CTimer4
+=======
+    t4.enable()         # Start the CTimer4 running
+    ADC_IN_CH1.read_timed(buffer, t4)
+    print("buffer:", buffer)
+    while not finish:       # Wait for end of conversion
+        pass
+    t4.enable(False)        # Stop CTimer4
+>>>>>>> 5923824... 初始化
 
 # Plot the wave
 def draw():
@@ -131,3 +151,7 @@ while True:
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5923824... 初始化
